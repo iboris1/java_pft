@@ -7,24 +7,20 @@ public class MyFirstProgram {
     hello("user");
     hello("Boris");
 
-    double len = 5;
-    System.out.println("Square area with side "+len+" = "+area(len));
+    Square s = new Square(5);
+    System.out.println("Square area with side "+s.l+" = "+s.area());
 
-    double a = 4;
-    double b = 6;
-    System.out.println("Rectangle area with sides of "+a+" and "+b+" = "+area(a,b));
+    Rectangle r = new Rectangle(4,6);
+
+    System.out.println("Rectangle area with sides of "+r.a+" and "+r.b+" = "+r.area());
   }
 
 	public static void hello(String somebody){
     System.out.println("Hello, " + somebody +"!");
   }
 
-  public static double area (double l){
-	  return l * l;
-  }
 
-  public static double area(double a, double b){
-    return a * b;
-  }
+
+
 
 }
