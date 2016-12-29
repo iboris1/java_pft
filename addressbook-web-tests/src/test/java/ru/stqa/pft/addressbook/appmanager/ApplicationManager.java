@@ -11,7 +11,6 @@ public class ApplicationManager {
 
   FirefoxDriver wd;
 
-//  private final NavigationHelper navigationHelper = new NavigationHelper();
   private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
@@ -39,10 +38,6 @@ public class ApplicationManager {
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
-
-//  public NavigationHelper getNavigationHelper() {
-//    return navigationHelper;
-//  }
 
   public ContactHelper getContactHelper() {
     return contactHelper;
