@@ -28,10 +28,10 @@ public class ContactCreationTests extends TestBase{
     @Test
     public void testContactCreation() {
 
-        app.initContactCreation();
-        app.fillContactForm(new ContactData("name1", "name2", "testaddress", "11223344", "test@test.com"));
-        app.submitContactForm();
-        app.gotoHomePage();
+        app.getContactHelper().initContactCreation();
+        app.getContactHelper().fillContactForm(new ContactData("name1", "name2", "testaddress", "11223344", "test@test.com"));
+        app.getContactHelper().submitContactForm();
+        app.getNavigationHelper().gotoHomePage();
     }
 
     //    @AfterMethod

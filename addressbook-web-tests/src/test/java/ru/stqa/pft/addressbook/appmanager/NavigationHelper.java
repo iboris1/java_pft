@@ -8,11 +8,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class NavigationHelper extends HelperBase{
 
+  private FirefoxDriver wd;
+
   public NavigationHelper(FirefoxDriver wd) {
     super(wd);
   }
 
   public void gotoGroupPage() {
     click(By.linkText("groups"));
+  }
+
+  public void gotoHomePage() {
+
+      click(By.linkText("home"));
+//      wd.findElement(By.linkText("home")).click();
+//      wd.findElement(By.name("searchstring")).click();
+//      wd.findElement(By.name("searchstring")).sendKeys("\\9");
   }
 }
