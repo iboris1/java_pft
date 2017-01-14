@@ -4,16 +4,14 @@ import org.testng.annotations.Test;
 
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactCreationTests extends TestBase{
+public class ContactCreationTests extends TestBase {
 
-    @Test
-    public void testContactCreation() {
+  @Test
+  public void testContactCreation() {
 
-        app.getContactHelper().initContactCreation();
-        app.getContactHelper().fillContactForm(new ContactData("name1", "name2", "testaddress",
-                "11223344", "test@test.com", "test1"),true);
-        app.getContactHelper().submitContactForm();
-        app.getNavigationHelper().gotoHomePage();
-    }
+    app.getContactHelper().createContact(new ContactData("name1", "name2", "testaddress",
+            "11223344", "test@test.com", "test1"), true);
+    app.getNavigationHelper().gotoHomePage();
+  }
 
 }

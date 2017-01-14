@@ -42,8 +42,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-    if (!wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input")).isSelected()) {
-      click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      click(By.name("selected[]"));
     }
   }
 
@@ -58,5 +58,15 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectedContacts() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData contactData, boolean b) {
+    initContactCreation();
+    fillContactForm(contactData,true);
+    submitContactForm();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
