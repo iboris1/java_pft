@@ -47,15 +47,13 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact(int index) {
-//    if (!wd.findElement(By.name("selected[]")).isSelected()) {
-//      click(By.name("selected[]")).get;
-//    }
+    if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
     wd.findElements(By.name("selected[]")).get(index).click();
-
+    }
   }
 
-  public void initContactModification() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  public void initContactModification(int index) {
+   wd.findElements(By.name("entry")).get(index).findElement(By.xpath("td[8]/a/img")).click();
   }
 
   public void submitContactModification() {
@@ -83,7 +81,8 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : rows){
         String firstname = element.findElements(By.tagName("td")).get(2).getText();
         String lastname = element.findElements(By.tagName("td")).get(1).getText();
-        ContactData contact = new ContactData(firstname, lastname, null,null,null,null);
+        String id = element.findElement(By.tagName("input")).getAttribute("value");
+        ContactData contact = new ContactData(id, firstname, lastname, null,null,null,null);
         contacts.add(contact);
     }
     return contacts;
