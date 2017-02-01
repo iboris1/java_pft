@@ -60,15 +60,27 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public void returnToHomePage() {
+    click(By.linkText("home"));
+  }
+
   public void deleteSelectedContacts() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
+    returnToHomePage();
   }
 
   public void createContact(ContactData contactData/*, boolean b*/) {
     initContactCreation();
     fillContactForm(contactData/*,true*/);
     submitContactForm();
+  }
+
+  public void modifyContact(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact/*,false*/);
+    submitContactModification();
+    returnToHomePage();
   }
 
   public boolean isThereAContact() {
