@@ -15,7 +15,6 @@ public class ContactData {
   private String email2;
   private String email3;
 
-
   public int getId() {
     return id;
   }
