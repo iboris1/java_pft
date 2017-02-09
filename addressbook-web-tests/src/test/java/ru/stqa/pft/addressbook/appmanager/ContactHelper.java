@@ -25,6 +25,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("email"), contactData.getEmail());
 
 //    if (creation){
@@ -114,17 +116,29 @@ public class ContactHelper extends HelperBase {
     if(contactCache != null){
       return new Contacts(contactCache);
     }
-
     contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement element : rows){
       String firstname = element.findElements(By.tagName("td")).get(2).getText();
       String lastname = element.findElements(By.tagName("td")).get(1).getText();
+      String allPhones = element.findElements(By.tagName("td")).get(5).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname));
+      contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+              .withAllPhones(allPhones));
     }
     return new Contacts(contactCache);
   }
 
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+    String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
+    String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
+            .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone);
+  }
 }

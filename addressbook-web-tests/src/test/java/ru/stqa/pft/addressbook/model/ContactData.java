@@ -6,8 +6,11 @@ public class ContactData {
   private String lastName;
   private String address;
   private String homePhone;
+  private String workPhone;
+  private String mobilePhone;
   private String email;
   private String group;
+  private String allPhones;
 
 
   public int getId() {
@@ -28,6 +31,14 @@ public class ContactData {
 
   public String getHomePhone() {
     return homePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
   }
 
   public String getEmail() {
@@ -67,6 +78,18 @@ public class ContactData {
 
   }
 
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+
+  }
+
 
 
   public ContactData withEmail(String email) {
@@ -102,6 +125,15 @@ public class ContactData {
     return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
   }
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
   @Override
   public int hashCode() {
     int result = id;
@@ -110,4 +142,6 @@ public class ContactData {
     return result;
   }
 
+//  public ContactData withAllPhones(String allPhones) {
+//  }
 }
