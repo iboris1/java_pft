@@ -62,6 +62,10 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("a[href*='edit.php?id="+id+"']")).click();
   }
 
+  public void viewContactDetailsById(int id) {
+    wd.findElement(By.cssSelector("a[href*='view.php?id="+id+"']")).click();
+  }
+
   public void submitContactModification() {
     click(By.name("update"));
   }
@@ -129,6 +133,13 @@ public class ContactHelper extends HelperBase {
               .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
     }
     return new Contacts(contactCache);
+  }
+
+  public ContactData contactDetails(ContactData contact) {
+    viewContactDetailsById(contact.getId());
+    String contactDetails = wd.findElement(By.cssSelector("div[id=content]")).getText();
+    wd.navigate().back();
+    return new ContactData().withContactDetails(contactDetails);
   }
 
 
