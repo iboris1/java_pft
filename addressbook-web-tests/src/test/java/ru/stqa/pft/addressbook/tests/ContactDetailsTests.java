@@ -1,7 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -19,30 +17,28 @@ public class ContactDetailsTests extends TestBase {
   @Test
   public void testContactDetails(){
     app.goTo().HomePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactDetails = app.contact().contactDetails(contact);
-    app.goTo().HomePage();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    String contactDetails = null;
+    contactDetails = app.contact().contactDetails();
 
-//    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm2();
     assertThat(contactDetails, equalTo(mergeContactDetails(contactInfoFromEditForm)));
   }
 
   private String mergeContactDetails(ContactData contact) {
-    return Arrays.asList(contact.getFirstName(),contact.getLastName(),contact.getAddress()
-            ,contact.getHomePhone(),contact.getMobilePhone(),contact.getWorkPhone()
-            ,contact.getEmail(),contact.getEmail2(),contact.getEmail3())
-            .stream().filter((s) -> !s.equals(""))
-            .map(ContactPhoneTests::cleaned)
-            .collect(Collectors.joining("\n"));
-
-  }
-
-  public static String cleaned(String phone){
-    return phone.replaceAll("\\s","").replaceAll("[-()]","")
-            .replaceAll("H:","")
-            .replaceAll("M:","")
-            .replaceAll("W:","");
+    return Arrays.asList(
+            Arrays.asList(Arrays.asList(contact.getFirstName(),contact.getLastName()).stream().filter((s) -> !s.equals(""))
+                    .collect(Collectors.joining(" ")),contact.getAddress()).stream().filter((s) -> !s.equals(""))
+                    .collect(Collectors.joining("\n")),
+            Arrays.asList(Arrays.asList("H:",contact.getHomePhone()).stream().filter((s) -> !s.equals("")).collect(Collectors.joining(" "))
+                          ,Arrays.asList("M:",contact.getMobilePhone()).stream().filter((s) -> !s.equals("")).collect(Collectors.joining(" "))
+                          ,Arrays.asList("W:",contact.getWorkPhone()).stream().filter((s) -> !s.equals("")).collect(Collectors.joining(" ")))
+                    .stream().collect(Collectors.joining("\n")),
+            Arrays.asList(contact.getEmail(),contact.getEmail2(),contact.getEmail3()).stream().filter((s) -> !s.equals(""))
+                    .collect(Collectors.joining("\n"))
+            )
+            .stream()
+            .filter((s) -> !s.equals(""))
+            .collect(Collectors.joining("\n\n"));
   }
 
 }
