@@ -1,12 +1,5 @@
 [
   {
-    "firstName": "testfirstname 0",
-    "lastName": "testlastname 0",
-    "address": "testaddress 0",
-    "mobilePhone": "testmobphone 0",
-    "email": "testemail 0"
-  },
-  {
     "firstName": "testfirstname 1",
     "lastName": "testlastname 1",
     "address": "testaddress 1",
