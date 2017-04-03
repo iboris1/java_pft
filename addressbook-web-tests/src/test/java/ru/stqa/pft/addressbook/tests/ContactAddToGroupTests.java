@@ -7,12 +7,11 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Boris on 29.12.2016.
+ * Created by Boris on 03.04.2017.
  */
-public class ContactModificationTests extends TestBase {
+public class ContactAddToGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
@@ -43,5 +42,8 @@ public class ContactModificationTests extends TestBase {
 //    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
+
+
+
 
 }
