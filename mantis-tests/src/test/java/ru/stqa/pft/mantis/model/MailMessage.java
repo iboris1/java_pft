@@ -1,7 +1,7 @@
 package ru.stqa.pft.mantis.model;
 
 /**
- * Created by Boris on 10.04.2017.
+ * Created by Boris on 10.04.2017.--12:55 8.6
  */
 public class MailMessage {
 
