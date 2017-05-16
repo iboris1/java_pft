@@ -49,7 +49,7 @@ public class HbConnectionTest {
 //    session.close();
 //  }
 
-  @Test
+  @Test(enabled = false)
   public void testHbConnection(){
 
     Session session = sessionFactory.openSession();

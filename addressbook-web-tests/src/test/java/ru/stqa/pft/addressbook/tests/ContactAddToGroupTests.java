@@ -23,7 +23,7 @@ public class ContactAddToGroupTests extends TestBase {
     }
   }
 
-  @Test
+  @Test(enabled = false)
   public void testContactModification() {
     app.goTo().HomePage();
     Contacts before = app.db().contacts();
